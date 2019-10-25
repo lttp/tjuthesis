@@ -1,0 +1,728 @@
+% Encoding: UTF-8
+
+@article{Article-MinMaxTheorem-neumann1928,
+  title={Zur theorie der gesellschaftsspiele},
+  author={Neumann, J von},
+  journal={Mathematische annalen},
+  volume={100},
+  number={1},
+  pages={295--320},
+  year={1928},
+  publisher={Springer}
+}
+
+@article{Journals-Pegasos-Shalev-ShwartzSSC11,
+  author    = {Shai Shalev{-}Shwartz and
+               Yoram Singer and
+               Nathan Srebro and
+               Andrew Cotter},
+  title     = {Pegasos: primal estimated sub-gradient solver for {SVM}},
+  journal   = {Math. Program.},
+  volume    = {127},
+  number    = {1},
+  pages     = {3--30},
+  year      = {2011}
+}
+
+@Book{Book-DesignOfApproximationAlgorithm-Williamson11,
+  title     = {The Design of Approximation Algorithms},
+  publisher = {Cambridge University Press},
+  year      = {2011},
+  author    = {David P. Williamson and David B. Shmoys},
+  isbn      = {978-0-521-19527-0},
+  owner     = {xytian},
+}
+
+@Book{Book-SVM-2000,
+   author={Vapnik V N.},
+   title={Nature of Statistical Learning Theory (2nd edition)},
+   publisher={Springer},
+   year={2000}
+}
+
+@Article{journal-ApproximabilityMinNonzero-Amaldi70,
+  author  = {Amaldi, Edoardo and Kann, Viggo},
+  title   = {On the approximability of minimizing nonzero variables or unsatisfied relations in linear systems},
+  journal = {Theoretical Computer Science},
+  year    = {1997},
+  volume  = {209},
+  number  = {1-2},
+  pages   = {2367--260},
+  owner   = {xytian},
+}
+
+@Article{journal-SparseApproximaleLinear-Natarajan95,
+  author  = {Natarajan, B. K.},
+  title   = {Sparse Approximate Solutions to Linear Systems},
+  journal = {{SIAM} J. Comput.},
+  year    = {1995},
+  volume  = {24},
+  number  = {2},
+  pages   = {227--234},
+  owner   = {xytian},
+}
+
+@article{Journals-GeneSelection-GuyonWBV02,
+  author    = {Isabelle Guyon and
+               Jason Weston and
+               Stephen Barnhill and
+               Vladimir Vapnik},
+  title     = {Gene Selection for Cancer Classification using Support Vector Machines},
+  journal   = {Machine Learning},
+  volume    = {46},
+  number    = {1-3},
+  pages     = {389--422},
+  year      = {2002}
+}
+
+@article{Journals-VariableSelectionSVM-Rakotomamonjy03,
+  author    = {Alain Rakotomamonjy},
+  title     = {Variable Selection Using SVM-based Criteria},
+  journal   = {Journal of Machine Learning Research},
+  volume    = {3},
+  pages     = {1357--1370},
+  year      = {2003}
+}
+
+@article{Journals-L0LMKM-WestonEST03,
+  author    = {Jason Weston and
+               Andr{\'{e}} Elisseeff and
+               Bernhard Sch{\"{o}}lkopf and
+               Michael E. Tipping},
+  title     = {Use of the Zero-Norm with Linear Models and Kernel Methods},
+  journal   = {Journal of Machine Learning Research},
+  volume    = {3},
+  pages     = {1439--1461},
+  year      = {2003}
+}
+
+@inproceedings{Conf-DirectConRelaxSSVM-ChanVL07,
+  author    = {Antoni B. Chan and
+               Nuno Vasconcelos and
+               Gert R. G. Lanckriet},
+  title     = {Direct convex relaxations of sparse {SVM}},
+  booktitle = {Machine Learning, Proceedings of the Twenty-Fourth International Conference
+               {(ICML} 2007)},
+  pages     = {145--153},
+  year      = {2007}
+}
+
+@inproceedings{Conf-LearnSSVMHighDimensional-TanWT10,
+  author    = {Mingkui Tan and
+               Li Wang and
+               Ivor W. Tsang},
+  title     = {Learning Sparse {SVM} for Feature Selection on Very High Dimensional
+               Datasets},
+  booktitle = {Proceedings of the 27th International Conference on Machine Learning
+               (ICML-10)},
+  pages     = {1047--1054},
+  year      = {2010}
+}
+
+@inproceedings{Conf-FSSVML1-Bradley98,
+  author    = {Paul S. Bradley and
+               Olvi L. Mangasarian},
+  title     = {Feature Selection via Concave Minimization and Support Vector Machines},
+  booktitle = {Proceedings of the Fifteenth International Conference on Machine Learning
+               {(ICML} 1998)},
+  pages     = {82--90},
+  year      = {1998}
+}
+
+@inproceedings{Conf-L1SVM-Zhu03,
+  author    = {Ji Zhu and
+               Saharon Rosset and
+               Trevor Hastie and
+               Robert Tibshirani},
+  title     = {1-norm Support Vector Machines},
+  booktitle = {Advances in Neural Information Processing Systems 16},
+  pages     = {49--56},
+  year      = {2003}
+}
+
+@article{Journals-FSNetonSVM-FungM04,
+  author    = {Glenn Fung and
+               O. L. Mangasarian},
+  title     = {A Feature Selection Newton Method for Support Vector Machine Classification},
+  journal   = {Comp. Opt. and Appl.},
+  volume    = {28},
+  number    = {2},
+  pages     = {185--202},
+  year      = {2004}
+}
+
+@article{Journals-L1Tao-CandesT05,
+  author    = {Emmanuel J. Cand{\`{e}}s and
+               Terence Tao},
+  title     = {Decoding by linear programming},
+  journal   = {{IEEE} Trans. Information Theory},
+  volume    = {51},
+  number    = {12},
+  pages     = {4203--4215},
+  year      = {2005}
+}
+
+@article{Journals-StructuredRegular-wainwright2014,
+  title={Structured regularizers for high-dimensional problems: Statistical and computational issues},
+  author={Wainwright, Martin J},
+  journal={Annual Review of Statistics and Its Application},
+  volume={1},
+  pages={233--253},
+  year={2014},
+  publisher={Annual Reviews}
+}
+
+@inproceedings{Conf-EnumerateLasso-HaraM17,
+  author    = {Satoshi Hara and
+               Takanori Maehara},
+  title     = {Enumerate Lasso Solutions for Feature Selection},
+  booktitle = {Proceedings of the Thirty-First {AAAI} Conference on Artificial Intelligence,
+               February 4-9, 2017, San Francisco, California, {USA.}},
+  pages     = {1985--1991},
+  year      = {2017}
+}
+
+@inproceedings{Conf-DoublyRegularizedSVM-LachaudCMS14,
+  author    = {Antoine Lachaud and
+               St{\'{e}}phane Canu and
+               David Mercier and
+               Fr{\'{e}}d{\'{e}}ric Suard},
+  title     = {A robust regularization path for the Doubly Regularized Support Vector
+               Machine},
+  booktitle = {22th European Symposium on Artificial Neural Networks, {ESANN} 2014},
+  year      = {2014}
+}
+
+@inproceedings{Conf-ADMML1SVM-PalanisamyPS16,
+  author    = {Balamurugan Palanisamy and
+               Anusha Posinasetty and
+               Shirish K. Shevade},
+  title     = {{ADMM} for Training Sparse Structural SVMs with Augmented $\ell_1$ Regularizers},
+  booktitle = {Proceedings of the 2016 {SIAM} International Conference on Data Mining},
+  pages     = {684--692},
+  year      = {2016}
+}
+
+@article{Journals-SVMLq-LiuZPA07,
+  author    = {Yufeng Liu and
+               Hao Helen Zhang and
+               Cheolwoo Park and
+               Jeongyoun Ahn},
+  title     = {Support vector machines with adaptive $\ell_q$ penalty},
+  journal   = {Computational Statistics {\&} Data Analysis},
+  volume    = {51},
+  number    = {12},
+  pages     = {6380--6394},
+  year      = {2007}
+}
+
+@article{Journals-SSVMLq-LiuLT10,
+  author    = {Zhenqiu Liu and
+               Shili Lin and
+               Ming Tan},
+  title     = {Sparse Support Vector Machines with $\ell_q$ Penalty for Biomarker
+               Identification},
+  journal   = {{IEEE/ACM} Trans. Comput. Biology Bioinform.},
+  volume    = {7},
+  number    = {1},
+  pages     = {100--107},
+  year      = {2010}
+}
+
+@inproceedings{Conf-ProjectionFS-PaulD14,
+  author    = {Saurabh Paul and
+               Petros Drineas},
+  title     = {Deterministic Feature Selection for Regularized Least Squares Classification},
+  booktitle = {Machine Learning and Knowledge Discovery in Databases - European Conference,
+               {ECML} {PKDD} 2014},
+  pages     = {533--548},
+  year      = {2014}
+}
+
+@article{Journals-SamplingFSKMeans-BoutsidisM13,
+  author    = {Christos Boutsidis and
+               Malik Magdon{-}Ismail},
+  title     = {Deterministic Feature Selection for {\textdollar}k{\textdollar}-Means
+               Clustering},
+  journal   = {{IEEE} Trans. Information Theory},
+  volume    = {59},
+  number    = {9},
+  pages     = {6099--6110},
+  year      = {2013}
+}
+
+@inproceedings{Conf-FSText-DasguptaDHJM07,
+  author    = {Anirban Dasgupta and
+               Petros Drineas and
+               Boulos Harb and
+               Vanja Josifovski and
+               Michael W. Mahoney},
+  title     = {Feature selection methods for text classification},
+  booktitle = {Proceedings of the 13th {ACM} {SIGKDD} International Conference on
+               Knowledge Discovery and Data Mining, San Jose, California, USA, August
+               12-15, 2007},
+  pages     = {230--239},
+  year      = {2007}
+}
+
+@article{Journals-FSFilter-KwakC02,
+  author    = {Nojun Kwak and
+               Chong{-}Ho Choi},
+  title     = {Input feature selection for classification problems},
+  journal   = {{IEEE} Trans. Neural Networks},
+  volume    = {13},
+  number    = {1},
+  pages     = {143--159},
+  year      = {2002}
+}
+
+@article{Journals-SparseLqSVMFS-ShaoLLWD18,
+  author    = {Yuan{-}Hai Shao and
+               Chun{-}Na Li and
+               Ming{-}Zeng Liu and
+               Zhen Wang and
+               Nai{-}Yang Deng},
+  title     = {Sparse $\ell_q$-norm least squares support vector
+               machine with feature selection},
+  journal   = {Pattern Recognition},
+  volume    = {78},
+  pages     = {167--181},
+  year      = {2018}
+}
+
+@article{Journals-LIBSVM-ChangL11,
+  author    = {Chih{-}Chung Chang and
+               Chih{-}Jen Lin},
+  title     = {{LIBSVM:} {A} library for support vector machines},
+  journal   = {{ACM} {TIST}},
+  volume    = {2},
+  number    = {3},
+  pages     = {27:1--27:27},
+  year      = {2011}
+}
+
+@article{Journals-LIBLinear-FanCHWL08,
+  author    = {Rong{-}En Fan and
+               Kai{-}Wei Chang and
+               Cho{-}Jui Hsieh and
+               Xiang{-}Rui Wang and
+               Chih{-}Jen Lin},
+  title     = {{LIBLINEAR:} {A} Library for Large Linear Classification},
+  journal   = {Journal of Machine Learning Research},
+  volume    = {9},
+  pages     = {1871--1874},
+  year      = {2008}
+}
+
+@article{journals-DLGeneralization-ZhangBHRV16,
+  author    = {Chiyuan Zhang and
+               Samy Bengio and
+               Moritz Hardt and
+               Benjamin Recht and
+               Oriol Vinyals},
+  title     = {Understanding deep learning requires rethinking generalization},
+  journal   = {CoRR},
+  volume    = {abs/1611.03530},
+  year      = {2016},
+  archivePrefix = {arXiv},
+  eprint    = {1611.03530v2},
+  owner     = {xytian}
+}
+
+@Article{journel-PredictingParameters-Misha13,
+  author  = {Misha Denil and Babak Shakibi and Laurent Dinh and Marc'Aurelio Ranzato and Nando de Freitas},
+  title   = {Predicting Parameters in Deep Learning},
+  journal = {Advances in Neural Information Processing Systems},
+  year    = {2013},
+  volume  = {26},
+  number  = {NIPS 2013},
+  pages   = {2148--2156},
+  owner   = {xytian}
+}
+
+@Article{Conf-OptimalBrainDamage-CunDS89,
+  author    = {Yann LeCun and
+               John S. Denker and
+               Sara A. Solla},
+  title     = {Optimal Brain Damage},
+  journal = {Advances in Neural Information Processing Systems},
+  pages     = {598--605},
+  year      = {1989},
+  volume    = {2},
+  number    = {NIPS 1989}
+}
+
+@Article{Conf-ComparingBiasesMinNC-HansonP88,
+  author    = {Stephen Jose Hanson and
+               Lorien Y. Pratt},
+  title     = {Comparing Biases for Minimal Network Construction with Back-Propagation},
+  journal = {Advances in Neural Information Processing Systems},
+  pages     = {177--185},
+  year      = {1988},
+  volume    = {1},
+  number    = {NIPS 1988},
+}
+
+@Article{journal-SparsifiesVD-Cisse2017,
+  author    = {Dmitry Molchanov and
+               Arsenii Ashukha and
+               Dmitry P. Vetrov},
+  title   = {Variational Dropout Sparsifies Deep Neural Networks},
+  journal = {Proceedings of Machine Learning Research},
+  year    = {2017},
+  volume  = {70},
+  number  = {ICML 2017},
+  pages   = {854--863},
+  owner   = {xytian},
+}
+
+@Article{journal-ApproximabilityMinNonzero-Amaldi70,
+  author  = {Amaldi, Edoardo and Kann, Viggo},
+  title   = {On the approximability of minimizing nonzero variables or unsatisfied relations in linear systems},
+  journal = {Theoretical Computer Science},
+  year    = {1997},
+  volume  = {209},
+  number  = {1-2},
+  pages   = {2367--260},
+  owner   = {xytian},
+}
+
+@Article{journal-SparseApproximaleLinear-Natarajan95,
+  author  = {Natarajan, B. K.},
+  title   = {Sparse Approximate Solutions to Linear Systems},
+  journal = {{SIAM} J. Comput.},
+  year    = {1995},
+  volume  = {24},
+  number  = {2},
+  pages   = {227--234},
+  owner   = {xytian},
+}
+
+@Article{journal-DecodingLP-Emmanuel05,
+  author  = {Emmanuel J. Cand{\`{e}}s and Terence Tao},
+  title   = {Decoding by linear programming},
+  journal = {{IEEE} Trans. Information Theory},
+  year    = {2005},
+  volume  = {51},
+  number  = {12},
+  pages   = {4203--4215},
+  owner   = {xytian},
+}
+
+@Article{journal-l0ApproximationExplanation-Ramirez13,
+  author  = {Ramirez, C. and Kreinovich, V. and Argaez, M.},
+  title   = {Why $l_1$ is a good approximation to $l_0$: {A} geometric explanation},
+  journal = {Engineering},
+  year    = {2013},
+  volume  = {7},
+  number  = {3},
+  pages   = {203--207},
+  owner   = {xytian},
+}
+
+@Book{Book-DesignOfApproximationAlgorithm-Williamson11,
+  title     = {The Design of Approximation Algorithms},
+  publisher = {Cambridge University Press},
+  year      = {2011},
+  author    = {David P. Williamson and David B. Shmoys},
+  isbn      = {978-0-521-19527-0},
+  owner     = {xytian},
+}
+
+@article{journals-CompressingCNNVectorQuantization-GongLYB14,
+  author    = {Yunchao Gong and
+               Liu Liu and
+               Ming Yang and
+               Lubomir D. Bourdev},
+  title     = {Compressing Deep Convolutional Networks using Vector Quantization},
+  journal   = {CoRR},
+  volume    = {abs/1412.6115},
+  year      = {2014},
+  archivePrefix = {arXiv},
+  eprint    = {1412.6115}
+}
+
+@article{Conf-HashTrick-ChenWTWC15,
+  author    = {Wenlin Chen and
+               James T. Wilson and
+               Stephen Tyree and
+               Kilian Q. Weinberger and
+               Yixin Chen},
+  title     = {Compressing Neural Networks with the {H}ashing Trick},
+  journal   = {Proceedings of Machine Learning Research},
+  pages     = {2285--2294},
+  year      = {2015},
+  volume    = {37},
+  number    = {ICML 2015}
+}
+
+@inproceedings{Conf-TrainingSparseNN-SrinivasSB17,
+  author    = {Suraj Srinivas and
+               Akshayvarun Subramanya and
+               R. Venkatesh Babu},
+  title     = {Training Sparse Neural Networks},
+  booktitle = {2017 {IEEE} Conference on Computer Vision and Pattern Recognition
+               Workshops, {CVPR} Workshops 2017},
+  pages     = {455--462},
+  year      = {2017}
+}
+
+@article{journals-LearningSparseNNL0Norm,
+  author    = {Christos Louizos and
+               Max Welling and
+               Diederik P. Kingma},
+  title     = {Learning Sparse Neural Networks through $L_0$ Regularization},
+  journal   = {CoRR},
+  volume    = {abs/1712.01312},
+  year      = {2017},
+  archivePrefix = {arXiv},
+  eprint    = {1712.01312}
+}
+
+@inproceedings{Conf-OptiamlBrainSurgeon-HassibiS92,
+  author    = {Babak Hassibi and
+               David G. Stork},
+  title     = {Second Order Derivatives for Network Pruning: {O}ptimal Brain Surgeon},
+  booktitle = {Advances in Neural Information Processing Systems 5, {NIPS} Conference},
+  pages     = {164--171},
+  year      = {1992}
+}
+
+@inproceedings{Conf-DataFreeParameterPruning-SrinivasB15,
+  author    = {Suraj Srinivas and
+               R. Venkatesh Babu},
+  title     = {Data-free Parameter Pruning for Deep Neural Networks},
+  booktitle = {Proceedings of the British Machine Vision Conference 2015, {BMVC}2015},
+  pages     = {31.1--31.12},
+  year      = {2015}
+}
+
+@article{Journals-GroupSparse-ScardapaneCHU17,
+  author    = {Simone Scardapane and
+               Danilo Comminiello and
+               Amir Hussain and
+               Aurelio Uncini},
+  title     = {Group sparse regularization for deep neural networks},
+  journal   = {Neurocomputing},
+  volume    = {241},
+  pages     = {81--89},
+  year      = {2017}
+}
+
+@article{Journal-ExactPenalty-lucidi2010exact,
+  title={Exact penalty functions for nonlinear integer programming problems},
+  author={Lucidi, Stefano and Rinaldi, Francesco},
+  journal={Journal of optimization theory and applications},
+  volume={145},
+  number={3},
+  pages={479--488},
+  year={2010},
+  publisher={Springer}
+}
+
+@article{Journal-MLP_LeNet-lecun1998,
+  title={Gradient-based learning applied to document recognition},
+  author={LeCun, Yann and Bottou, L{\'e}on and Bengio, Yoshua and Haffner, Patrick and others},
+  journal={Proceedings of the IEEE},
+  volume={86},
+  number={11},
+  pages={2278--2324},
+  year={1998},
+  publisher={Taipei, Taiwan}
+}
+
+
+@article{Journals-ADAM-KingmaB14,
+  author    = {Diederik P. Kingma and
+               Jimmy Ba},
+  title     = {Adam: {A} Method for Stochastic Optimization},
+  journal   = {CoRR},
+  volume    = {abs/1412.6980v9},
+  year      = {2014},
+  archivePrefix = {arXiv},
+  eprint    = {1412.6980},
+}
+
+@Article{journel-LearningWeiCon-Han15,
+  author    = {Song Han and
+               Jeff Pool and
+               John Tran and
+               William J. Dally},
+  title   = {Learning both Weights and Connections for Efficient Neural Network},
+  journal = {Advances in Neural Information Processing Systems},
+  year    = {2015},
+  volume  = {28},
+  number  = {NIPS 2015},
+  pages   = {1135--1143},
+  owner   = {xytian}
+}
+
+@inproceedings{Conf-AutomatedPruning-ManessiRBNS18,
+  author    = {Franco Manessi and
+               Alessandro Rozza and
+               Simone Bianco and
+               Paolo Napoletano and
+               Raimondo Schettini},
+  title     = {Automated Pruning for Deep Neural Network Compression},
+  booktitle = {24th International Conference on Pattern Recognition, {ICPR} 2018},
+  pages     = {657--664},
+  year      = {2018}
+}
+
+@Article{Journel-LinearStructureCNN-Emily14,
+  author  = {Emily L. Denton and
+               Wojciech Zaremba and
+               Joan Bruna and
+               Yann LeCun and
+               Rob Fergus},
+  title   = {Exploiting Linear Structure Within Convolutional Networks for Efficient Evaluation},
+  journal = {Advances in Neural Information Processing Systems},
+  year    = {2014},
+  volume  = {27},
+  number  = {NIPS 2014},
+  pages   = {1269--1277},
+  owner   = {xytian}
+}
+
+@inproceedings{Conf-ArchitectureLearning-SrinivasB16,
+  author    = {Suraj Srinivas and
+               Radhakrishnan Venkatesh Babu},
+  title     = {Learning Neural Network Architectures using Backpropagation},
+  booktitle = {Proceedings of the British Machine Vision Conference 2016, {BMVC}
+               2016},
+  year      = {2016}
+}
+
+@inproceedings{Conf-FriedCOnvents-YangMDFSSW15,
+  author    = {Zichao Yang and
+               Marcin Moczulski and
+               Misha Denil and
+               Nando de Freitas and
+               Alexander J. Smola and
+               Le Song and
+               Ziyu Wang},
+  title     = {Deep Fried Convnets},
+  booktitle = {2015 {IEEE} International Conference on Computer Vision, {ICCV} 2015},
+  pages     = {1476--1483},
+  year      = {2015}
+}
+
+@inproceedings{Conf-DeepCompression_huffman-Han2015,
+    title={Deep compression: Compressing deep neural networks with pruning, trained quantization and {H}uffman coding},
+    author={Han, Song and Mao, Huizi and Dally, William J},
+    booktitle={International Conference on Learning Representations},
+    year={2015}
+}
+
+@Article{Journel-DNN-Guo-16,
+  author    = {Yiwen Guo and
+               Anbang Yao and
+               Yurong Chen},
+  title     = {Dynamic Network Surgery for Efficient {DNN}s},
+  journal = {Advances in Neural Information Processing Systems},
+  year    = {2016},
+  volume  = {29},
+  number  = {NIPS 2016},
+  pages     = {1379--1387},
+  owner   = {xytian}
+}
+
+@inproceedings{Conf-SoftWeightSharing-Han2015,
+    title={Soft weight-sharing for neural network compression},
+    author={Ullrich, Karen and Meeds, Edward and Welling, Max},
+    booktitle={International Conference on Learning Representations},
+    year={2017}
+}
+
+@inproceedings{Conf-VGG16-SimonyanZ14a,
+  author    = {Karen Simonyan and
+               Andrew Zisserman},
+  title     = {Very Deep Convolutional Networks for Large-Scale Image Recognition},
+  booktitle={International Conference on Learning Representations},
+  year      = {2014}
+}
+
+@Article{Conf-BaysianCompression-LouizosUW17,
+  author    = {Christos Louizos and
+               Karen Ullrich and
+               Max Welling},
+  title     = {Bayesian Compression for Deep Learning},
+  journal   = {Advances in Neural Information Processing Systems},
+  pages     = {3290--3300},
+  year      = {2017},
+  volume    = {30},
+  number    = {NIPS 2017}
+}
+
+@Article{Conf-StructuredSparsity-Wen17,
+  author    = {Wei Wen and
+               Chunpeng Wu and
+               Yandan Wang and
+               Yiran Chen and
+               Hai Li},
+  title     = {Learning Structured Sparsity in Deep Neural Networks},
+  journal   = {Advances in Neural Information Processing Systems},
+  pages     = {2074--2082},
+  year      = {2016},
+  volume    = {29},
+  number    = {NIPS 2016}
+}
+
+@Article{Conf-SDR-TartaglioneLFF18,
+  author    = {Enzo Tartaglione and
+               Skjalg Leps{\o}y and
+               Attilio Fiandrotti and
+               Gianluca Francini},
+  title     = {Learning sparse neural networks via sensitivity-driven regularization},
+  journal   = {Advances in Neural Information Processing Systems},
+  pages     = {3882--3892},
+  year      = {2018},
+  volume    = {31},
+  number    = {NIPS 2018}
+}
+
+@inproceedings{Conf-XnorNet2016Rastegari,
+  title={Xnor-net: {I}magenet classification using binary convolutional neural networks},
+  author={Rastegari, Mohammad and Ordonez, Vicente and Redmon, Joseph and Farhadi, Ali},
+  booktitle={European Conference on Computer Vision},
+  pages={525--542},
+  year={2016},
+  organization={Springer}
+}
+
+@inproceedings{Conf-OLMP-LiQJLT18,
+  author    = {Guiying Li and
+               Chao Qian and
+               Chunhui Jiang and
+               Xiaofen Lu and
+               Ke Tang},
+  title     = {Optimization based Layer-wise Magnitude-based Pruning for {DNN} Compression},
+  booktitle = {Proceedings of the Twenty-Seventh International Joint Conference on
+               Artificial Intelligence, {IJCAI}},
+  pages     = {2383--2389},
+  year      = {2018},
+  doi       = {10.24963/ijcai.2018/330}
+}
+
+@article{journals-SNIP-Namhoon18,
+  author    = {Namhoon Lee and
+               Thalaiyasingam Ajanthan and
+               Philip H. S. Torr},
+  title     = {{SNIP:} {S}ingle-shot Network Pruning based on Connection Sensitivity},
+  journal   = {CoRR},
+  volume    = {abs/1810.02340},
+  year      = {2018},
+  archivePrefix = {arXiv},
+  eprint    = {1810.02340}
+}
+
+@inproceedings{Conf-LearningComforNNP-Carreira-Perpinan18,
+  author    = {Miguel {\'{A}}. Carreira{-}Perpi{\~{n}}{\'{a}}n and
+               Yerlan Idelbayev},
+  title     = {"Learning-Compression" Algorithms for Neural Net Pruning},
+  booktitle = {2018 {IEEE} Conference on Computer Vision and Pattern Recognition,
+               {CVPR}},
+  pages     = {8532--8541},
+  year      = {2018}
+}
+@Comment{jabref-meta: databaseType:bibtex;}

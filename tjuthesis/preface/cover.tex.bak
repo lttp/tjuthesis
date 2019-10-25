@@ -1,0 +1,73 @@
+% !Mode:: "TeX:UTF-8"
+
+
+\ctitle{学习}  %封面用论文标题，自己可手动断行
+\etitle{Sparse Learning via Relaxation and Rounding}
+\caffil{天津大学计算机科学与技术学院} %学院名称
+\csubjecttitle{工程领域}
+\csubject{{计算机技术~~\quad\qquad}}   %专业
+\cauthortitle{作者姓名}     % 学位
+\cauthor{{学习~~~~~~\qquad\qquad }}   %学生姓名
+\csupervisortitle{指导教师}
+\csupervisor{{王~\;教授 \quad\qquad}} %导师姓名
+%\ccorsupervisortitle{企业导师}
+%\ccorsupervisor{{孙\,\,\,\,\,\,提~\;高级工程师}}
+
+\declaretitle{独创性声明}
+\declarecontent{
+本人声明所呈交的学位论文是本人在导师指导下进行的研究工作和取得的研究成果，除了文中特别加以标注和致谢之处外，论文中不包含其他人已经发表或撰写过的研究成果，也不包含为获得 {\underline{\kai\textbf{~天津大学~}}}或其他教育机构的学位或证书而使用过的材料。与我一同工作的同志对本研究所做的任何贡献均已在论文中作了明确的说明并表示了谢意。
+}
+\authorizationtitle{学位论文版权使用授权书}
+\authorizationcontent{
+本学位论文作者完全了解{\underline{\kai\textbf{~天津大学~}}}有关保留、使用学位论文的规定。特授权{\underline{\kai\textbf{~天津大学~}}} 可以将学位论文的全部或部分内容编入有关数据库进行检索，并采用影印、缩印或扫描等复制手段保存、汇编以供查阅和借阅。同意学校向国家有关部门或机构送交论文的复印件和磁盘。
+}
+\authorizationadd{(保密的学位论文在解密后适用本授权说明)}
+\authorsigncap{学位论文作者签名:}
+\supervisorsigncap{导师签名:}
+\signdatecap{签字日期:}
+
+
+%\cdate{\CJKdigits{\the\year} 年\CJKnumber{\the\month} 月}
+\cdate{二零一九年十一月}
+% 如需改成二零一二年四月二十五日的格式，可以直接输入，即如下所示
+% \cdate{二零一二年四月二十五日}
+% \cdate{\the\year 年\the\month 月 \the\day 日} % 此日期显示格式为阿拉伯数字 如2012年4月25日
+\cabstract{
+    摘要
+}
+\ckeywords{学习，学习}
+
+\eabstract{
+    abstract
+}
+\ekeywords{Sparse Learning, Relaxation, Rounding}
+
+
+%\enotations{
+%    \begin{table}[!htp]
+%      \centering
+%      \renewcommand\arraystretch{2.0}
+%      \label{tab:master_thesis:OKS_MAB:notations}
+%      \begin{tabular}{lll}
+%        $\{\mathbf{x},y\}$ && 单个样例~$\mathbf{x} \in \mathbb{R}^d,~y \in \mathbb{R}$\\
+%        $S$ && 大小为~$T$ 的样本序列~$S = \{\mathbf{x}_i,y_i\}^T_{i=1}$\\
+%        $[K]$ &&整数集合~$[K]=\{1,2,\ldots,K\}$\\
+%        $\kappa$&&核函数~$\kappa(\cdot,\cdot): \mathbb{R}^d \times \mathbb{R}^d \rightarrow \mathbb{R}$\\
+%        $\mathcal{K}$&&$K$ 个候选核的集合~$\mathcal{K} = \{\kappa_1,\kappa_2,\ldots,\kappa_K\}$\\
+%        $\kappa^\ast$&&最优核\\
+%        $f$&&预测模型~$f: \mathbb{R}^d\rightarrow \mathbb{R}$\\
+%        $\mathcal{H}_i$&&第~$i$~个假设空间~$\mathcal{H}_i = \{f\vert f: \mathbb{R}^d \rightarrow \mathbb{R}\},~i \in [K]$\\
+%        $\mathcal{H}$&&$K$ 个假设空间~$\mathcal{H} = \{\mathcal{H}_1, \mathcal{H}_2,\ldots,\mathcal{H}_K\}$\\
+%        $\ell$&&$L$-Lipschitz 连续的有界凸损失函数~$\ell:\mathbb{R}^2 \rightarrow \mathbb{R}$\\
+%        $\nabla\ell_f(f(\mathbf{x}),y)$&&损失函数对~$f$ 的梯度或者次梯度\\
+%        $\mathbf{i}_{m}$&&$m$ 维各分量为~$i \in \mathbb{R}$ 的向量~$\mathbf{i}_{m} = \{i,i,\ldots,i\}$\\
+%        $\mathrm{OKL}$&&任意的在线核学习算法\\
+%        $\mathrm{OKL}(\{\mathbf{x},y\},\mathcal{H}_i)$&&在线核学习算法~$\mathrm{OKL}$~在假设空间~$\mathcal{H}_i$~对样例~$\{\mathbf{x},y\}$~ 的预测\\
+%        $z$&&二值随机变量~$z= \mathbf{Bin}(\lambda,B,p_{z})$，$p(z=\lambda) = 1- p_z$
+%      \end{tabular}
+%    \end{table}
+%}
+
+\makecover
+
+\clearpage

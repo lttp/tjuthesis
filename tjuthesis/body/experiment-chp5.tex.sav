@@ -1,0 +1,25 @@
+% !Mode:: "TeX:UTF-8"
+
+\chapter{实验}
+    本章在标准数据集上评价统一框架下的在线核选择方法~OKSW-OA，OKSW-NOA~和~OKSE.
+
+\section{数据集及参数设置}
+    选择高斯核~$\kappa(\mathbf{x},\mathbf{x}') = \exp\left(-\frac{\Vert \mathbf{x}-\mathbf{x}' \Vert^2}{2\sigma^2}\right)$，
+    设计四组不同的实验来验证所提出的统一框架下的在线核选择方法的性能。
+    
+    第一组实验,
+    验证提出的包裹式方法~OKSW-OA~以及~IOKSW-OA的性能。
+    采用下面两种已有在线核学习算法
+    \begin{itemize}
+        \item Forgetron: 预算保持的核感知机算法~\cite{Dekel2005},
+        \item BOGD: 预算保持梯度下降的在线核学习~\cite{Hoi2012},
+        \item FOGD: 傅里叶梯度下降的在线核学习~\cite{Lu2016}.
+    \end{itemize}
+    OKSW-OA 分别调用上述两种在线核学习算法,
+    记为~OKSW-Forgetron 和~OKSW-BOGD.
+    比较~OKSW 与两个在线核学习算法的平均错误率.
+    
+\section{实验结果及分析}
+
+\section{小结}
+

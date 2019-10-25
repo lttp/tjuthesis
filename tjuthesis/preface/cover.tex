@@ -1,0 +1,91 @@
+% !Mode:: "TeX:UTF-8"
+
+
+\ctitle{动态复杂网络社团结构演变特征构建及建模研究}  %封面用论文标题，自己可手动断行
+\etitle{A study on dynamic network community detection modelling and evolution feature analysis}
+\caffil{天津大学智能与计算学部} %学院名称
+\csubjecttitle{工程领域}
+\csubject{{软件学院~~\quad\qquad}}   %专业
+\cauthortitle{作者姓名}     % 学位
+\cauthor{{李天鹏\qquad\qquad }}   %学生姓名
+\csupervisortitle{指导教师}
+\csupervisor{{李杰 \quad\qquad}} %导师姓名
+%\ccorsupervisortitle{企业导师}
+%\ccorsupervisor{{孙\,\,\,\,\,\,提~\;高级工程师}}
+
+\declaretitle{独创性声明}
+\declarecontent{
+本人声明所呈交的学位论文是本人在导师指导下进行的研究工作和取得的研究成果，除了文中特别加以标注和致谢之处外，论文中不包含其他人已经发表或撰写过的研究成果，也不包含为获得 {\underline{\kai\textbf{~天津大学~}}}或其他教育机构的学位或证书而使用过的材料。与我一同工作的同志对本研究所做的任何贡献均已在论文中作了明确的说明并表示了谢意。
+}
+\authorizationtitle{学位论文版权使用授权书}
+\authorizationcontent{
+本学位论文作者完全了解{\underline{\kai\textbf{~天津大学~}}}有关保留、使用学位论文的规定。特授权{\underline{\kai\textbf{~天津大学~}}} 可以将学位论文的全部或部分内容编入有关数据库进行检索，并采用影印、缩印或扫描等复制手段保存、汇编以供查阅和借阅。同意学校向国家有关部门或机构送交论文的复印件和磁盘。
+}
+\authorizationadd{(保密的学位论文在解密后适用本授权说明)}
+\authorsigncap{学位论文作者签名:}
+\supervisorsigncap{导师签名:}
+\signdatecap{签字日期:}
+
+
+%\cdate{\CJKdigits{\the\year} 年\CJKnumber{\the\month} 月}
+\cdate{二零一九年十一月}
+% 如需改成二零一二年四月二十五日的格式，可以直接输入，即如下所示
+% \cdate{二零一二年四月二十五日}
+% \cdate{\the\year 年\the\month 月 \the\day 日} % 此日期显示格式为阿拉伯数字 如2012年4月25日
+\cabstract{
+    %互联网的发展以及移动智能设备的普及使网络成为了人们主要的沟通交流媒介，而网络中特别是社交网络中包含有大量的风险信息。本课题从风险计算的角度出发，通过对社交媒体数据、论文引用数据、关系网络数据以及手机信令数据等关联性数据的分析计算，挖掘数据中的团体信息以及团体演化模式，为决策者提供足够的风险信息支持，有助于针对城市数据进行风险预警、风险应对等任务的执行。具体工作如下：
+互联网+时代的来临给城市风险计算带来了全新的挑战，需要融合社会、物理、网络空间的多维大规模数据进行高效精准的风险感知、理解、预测。从多维城市数据中高效准确的检测出符合特定模式的社团及其演化模式是城市风险计算的基石。本课题从演化的角度，针对动态复杂网络社团检测及演化分析以及从社团到风险的挖掘模式进行了探索，具体工作如下：
+    
+首先，通过对真实复杂网络数据的分析处理，找到节点的结构属性与社团演化的规律。通过巧妙的设计，我们将社团内的节点是否在下一时刻发生转移视作二分类问题，用利用特征工程提取每个节点的结构属性作为分类特征，利用决策树对社交媒体数据、论文引用数据以及其他关系型数据的节点的社团转移进行分类，并分析其特征重要性。
+
+其次，通过融合节点演化特征来构建社团检测模型，增强社团演化的准确性。融合节点级别的社团转移趋势以及社团级别的社团转移趋势，通过构建从社团级别转移矩阵到节点级别社团转移矩阵的层次贝叶斯结构，结合动态网络概率生成模型构建了层次贝叶斯动态随机块模型，并利用变分推断对模型进行参数估计。
+
+最后，利用手机信令数据对以上的规律以及模型在城市风险计算中的有效性进行实证分析。利用手机信令数据验证节点的度以及节点平均邻居度对节点社团归属是否发生转移找到现实的样例进行分析。同时对层次贝叶斯动态随机块模型进行有效性分析，利用对真实网络的处理，提取出真实网络中的节点社团归属以及社团演化信息，接着通过社团信息对现实世界的事件进行提取并针对真实数据潜在风险进行分析并进行可视化。
+
+以上工作的结果表明，节点的度以及平均邻居度是节点进行社团转移的主要结构属性，即社交网络中，用户在不同圈子间进行转移的普遍基础就是具有较多朋友，或者朋友的交友涉猎广泛。同时提出的层次贝叶斯动态随机块模型能够有效地提取出动态网络中的社团划分以及社团演化信息，并能够利用真实网络数据进行潜在风险分析。
+
+}
+\ckeywords{复杂网络分析；动态社团检测；社团演化；城市风险计算；}
+
+\eabstract{
+    The advent of the Internet+ era has brought new challenges to urban risk computing. It needs to integrate multi-dimensional and large-scale data of social, physical and cyberspace for efficient and accurate risk perception, understanding and prediction. Efficient and accurate detection of associations and their evolution patterns from multidimensional city data is the cornerstone of urban risk calculation. From the perspective of evolution, this topic explores the detection and evolution analysis of dynamic complex network communities and the mining model from community to risk. The specific work is as follows:
+    
+    Firstly, through the analysis and processing of real complex network data, the structural properties of nodes and the laws of community evolution are found. Through clever design, we regard whether the nodes in the community are transferred at the next moment as a two-category problem, using the feature engineering to extract the structural attributes of each node as the classification feature, and using the decision tree for social media data, paper reference data, and The community transfer of nodes of other relational data is classified and analyzed for its characteristic importance.
+    
+    Secondly, the community detection model is constructed by integrating the evolution characteristics of nodes, and the accuracy of community evolution is enhanced. Combining the node-level community transfer trend and the community-level community transfer trend, constructing the hierarchical Bayesian dynamic random block by constructing the hierarchical Bayesian structure from the community-level transfer matrix to the node-level community transfer matrix, combined with the dynamic network probability generation model. The model is used to estimate the parameters of the model using variational inference.
+    
+    Finally, the mobile phone signaling data is used to empirically analyze the above rules and the validity of the model in urban risk calculation. The mobile phone signaling data is used to verify the degree of the node and the average neighbor degree of the node to analyze whether the node community belongs to the transfer and find a reality. At the same time, the effectiveness analysis of the hierarchical Bayesian dynamic random block model is carried out. The processing of the real network is used to extract the node community membership and community evolution information in the real network, and then the real world events are extracted and targeted by the community information. Data potential risks are analyzed and visualized.
+    
+    The results of the above work show that the degree of nodes and the average neighbor degree are the main structural attributes of nodes for community transfer. In social networks, the common basis for users to transfer between different circles is to have more friends, or friends with friends. . At the same time, the hierarchical Bayesian dynamic random block model can effectively extract the community division and community evolution information in the dynamic network, and can use the real network data for potential risk analysis.
+}
+\ekeywords{Complex network analysis, dynamic community detection,community evolution,city risk calucalation}
+
+
+%\enotations{
+%    \begin{table}[!htp]
+%      \centering
+%      \renewcommand\arraystretch{2.0}
+%      \label{tab:master_thesis:OKS_MAB:notations}
+%      \begin{tabular}{lll}
+%        $\{\mathbf{x},y\}$ && 单个样例~$\mathbf{x} \in \mathbb{R}^d,~y \in \mathbb{R}$\\
+%        $S$ && 大小为~$T$ 的样本序列~$S = \{\mathbf{x}_i,y_i\}^T_{i=1}$\\
+%        $[K]$ &&整数集合~$[K]=\{1,2,\ldots,K\}$\\
+%        $\kappa$&&核函数~$\kappa(\cdot,\cdot): \mathbb{R}^d \times \mathbb{R}^d \rightarrow \mathbb{R}$\\
+%        $\mathcal{K}$&&$K$ 个候选核的集合~$\mathcal{K} = \{\kappa_1,\kappa_2,\ldots,\kappa_K\}$\\
+%        $\kappa^\ast$&&最优核\\
+%        $f$&&预测模型~$f: \mathbb{R}^d\rightarrow \mathbb{R}$\\
+%        $\mathcal{H}_i$&&第~$i$~个假设空间~$\mathcal{H}_i = \{f\vert f: \mathbb{R}^d \rightarrow \mathbb{R}\},~i \in [K]$\\
+%        $\mathcal{H}$&&$K$ 个假设空间~$\mathcal{H} = \{\mathcal{H}_1, \mathcal{H}_2,\ldots,\mathcal{H}_K\}$\\
+%        $\ell$&&$L$-Lipschitz 连续的有界凸损失函数~$\ell:\mathbb{R}^2 \rightarrow \mathbb{R}$\\
+%        $\nabla\ell_f(f(\mathbf{x}),y)$&&损失函数对~$f$ 的梯度或者次梯度\\
+%        $\mathbf{i}_{m}$&&$m$ 维各分量为~$i \in \mathbb{R}$ 的向量~$\mathbf{i}_{m} = \{i,i,\ldots,i\}$\\
+%        $\mathrm{OKL}$&&任意的在线核学习算法\\
+%        $\mathrm{OKL}(\{\mathbf{x},y\},\mathcal{H}_i)$&&在线核学习算法~$\mathrm{OKL}$~在假设空间~$\mathcal{H}_i$~对样例~$\{\mathbf{x},y\}$~ 的预测\\
+%        $z$&&二值随机变量~$z= \mathbf{Bin}(\lambda,B,p_{z})$，$p(z=\lambda) = 1- p_z$
+%      \end{tabular}
+%    \end{table}
+%}
+
+\makecover
+
+\clearpage

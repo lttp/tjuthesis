@@ -1,0 +1,585 @@
+% !Mode:: "TeX:UTF-8"
+
+\chapter{包裹式在线核选择的对抗式多臂赌博机模型}
+
+    本章研究包裹式在线核选择的对抗式多臂赌博机模型。
+    分别在遗忘对手环境和非遗忘对手环境下给出包裹式在线核选择方法，
+    分析两种包裹式方法的理论后悔界，
+    针对在线二分类问题，
+    给出两种包裹式算法。
+
+\section{包裹式在线核选择}
+    首先考虑遗忘对手环境下的对抗式赌博机模型，
+    给出一种在线核选择的包裹式方法。
+
+\subsection{遗忘对手}
+    在遗忘对手的对抗式多臂赌博机模型下，
+    基于~EXP3，
+    设计在线核选择的包裹式方法~(Online Kennel Selection Wrapper via Oblivious Adversary, OKSW-OA)。
+
+    $\mathcal{H}=\{\mathcal{H}_1,\mathcal{H}_2,\ldots,\mathcal{H}_K\}$ 表示~$K$ 个假设空间。
+    每个候选核~$\kappa_i \in \mathcal{K}$ 对应对抗式多臂赌博机问题的一个臂~$a_i \in \mathcal{A}$。
+    在第~$t$ 回合，
+    记
+    $$
+        \omega_t = \{\omega_{t,1}, \omega_{t,2}, \ldots, \omega_{t,K}\}
+    $$
+    为~$K$ 个候选核的权重向量，
+    记
+    $$
+        \mathbf{P}_t = \{p_{t,1}, p_{t,2}, \ldots, p_{t,K}\}
+    $$
+    为~$K$ 个候选核的概率分布。
+    首先计算每一个核~$\kappa_i$ 的概率
+    \begin{equation}
+        \label{eq:master_thesis:OKS_MAB:probability_distribution}
+        p_{t,i} = (1-\gamma)\frac{\omega_{t,i}}{\sum^K_{j=1}\omega_{t,j}} + \gamma \cdot\frac{1}{K}\mbox{。}
+    \end{equation}
+    其中, $t=1, 2, \ldots, T, \; i=1, 2, \ldots, K$。
+    $\mathbf{P}_t$ 可以看做是每个核的权重之比再加上一个均匀分布，
+    这样可保证每个核至少会以~$\frac{\gamma}{K}$ 的概率被选中，
+    旨在探索所有的核。
+    $\gamma$ 称为探索因子。
+
+    学习者接收样例~$\{\mathbf{x}_t,y_t\}$，
+    首先根据~$\mathbf{P}_t$ 选择一个核~$\kappa_{I_{t1}}$，$I_{t1}\in[K]$。
+    当候选核性能差异很大时，
+    探索项会~$\frac{\gamma}{K}$~导致频繁地选择不好的核，
+    使得学习者的累积损失变大，
+    效率更低。
+    为了最小化累积损失且提高效率，
+    学习者将始终选择大概率的核。
+    具体地，
+    首先判断所选择核~$\kappa_{I_{t1}}$ 的概率。
+
+    如果~$p_{t,I_{t1}} > \varepsilon \frac{\gamma}{K}$，
+    学习者调用~$\mathrm{OKL}$
+    对样例进行预测，
+    得到预测的结果
+    $$
+        \hat{y}_{t,I_{t1}} = \mathrm{OKL}(\{\mathbf{x}_i,y_i\}_{i \in [r_{I_{t1}},t]},\kappa_{I_{t1}})\mbox{。}
+    $$
+    其中，
+    $r_{I_{t1}}$ 是核~$\kappa_{I_{t1}}$ 最近一次被学习者选中的回合索引。
+    $\mathrm{OKL}$ 根据输入的样本序列~$\{\mathbf{x}_i,y_i\}_{i \in [r_{I_{t1}},t]}$~学习得到一个假设序列，
+    最后给出对样例~$\{\mathbf{x}_t,y_t\}$ 的预测结果。
+
+    学习者得到预测损失~$l_{t,I_{t1}} = \ell\left(\hat{y}_{t,I_{t1}},y_t\right)$。
+    对于二分类问题，
+    $$
+        l_{t,I_{t1}} = \mathbb{I}(\mathrm{sign}\left(\hat{y}_{t,I_{t1}}\right) \neq y_t)\mbox{。}
+    $$
+    为了简化分析，
+    将损失转化为奖励
+    $$
+        g_{t,I_{t1}} = B - l_{t,I_{t1}}\mbox{。}
+    $$
+    记~$l_{t,I_{t}}$ 为本回合学习者预测样例~$\{\mathbf{x}_t,y_t\}$ 的预测损失，
+    则有~$l_{t,I_{t}} = l_{t,I_{t1}}$。
+
+    由于每回合只能得到所选核对样例进行预测得到的奖励，
+    故对所有候选核的奖励给出一个估计量
+    \begin{equation}
+        \label{eq:master_thesis:OKS_MAB:estimated_reward}
+        \hat{g}_{t,i} = \frac{g_{t,i}}{p_{t,i}}\mathbb{I}(\kappa_{I_{t1}} = \kappa_i),~i = 1,2,\ldots,K\mbox{。}
+    \end{equation}
+    应用估计的奖励，
+    结合指数加权的方法，
+    更新所有候选核的权重
+    \begin{equation}
+        \label{eq:master_thesis:OKS_MAB:update_weight_reward}
+        \omega_{t+1,i} = \omega_{t,i}\cdot\exp\left(\frac{\gamma\hat{g}_{t,i}}{K}\right),~i = 1,2,\ldots,K\mbox{，}
+    \end{equation}
+    用于更细第~$t+1$ 回合的概率分布~$\mathbf{P}_{t+1}$。
+
+    如果~$p_{t,I_{t1}} < \varepsilon \frac{\gamma}{K}$，
+    表明学习者选择到一个小概率的核。
+    此时，
+    学习者重新选择一个核~$\kappa_{I_{t2}}$，
+    满足~$\kappa_{I_{t2}}$ 对应的概率最大。
+    学习者调用~$\mathrm{OKL}$
+    对样例进行预测，
+    得到预测结果
+    $$
+        \hat{y}_{t,I_{t2}} = \mathrm{OKL}(\{\mathbf{x}_t,y_t\},\kappa_{I_{t2}})\mbox{，}
+    $$
+    以及预测的损失~$l_{t,I_{t2}} = \ell\left(\hat{y}_{t,I_{t2}},y_t\right)$。
+    $\mathrm{OKL}$ 仅对样例~$\{\mathbf{x}_t,y_t\}$~进行预测，
+    不更新假设。
+
+    对于核~$\kappa_{I_{t1}}$，
+    令
+    $$
+        g_{t,I_{t1}} = B-z\mbox{，}
+    $$
+    其中~$z= \mathbf{Bin}(\lambda,B,p_{z})$。
+    按照~\eqref{eq:master_thesis:OKS_MAB:estimated_reward} 计算估计的奖励，
+    并且根据~\eqref{eq:master_thesis:OKS_MAB:update_weight_reward} 更新权重。
+    最后，
+    本回合学习者对样例~$\{\mathbf{x}_t,y_t\}$ 的预测损失
+    $l_{t,I_{t}} = l_{t,I_{t2}}$。
+
+    定义如下的在线核选择期望后悔，
+    度量在线核选择方法的性能
+    \begin{equation}
+        \label{eq:master_thesis:OKS_MAB:regret_OKS}
+        \mathbb{E}\left[R_{OKS}\right] = \mathbb{E}\left[\sum^T_{t=1}l_{t,I_{t}}\right] - \min_{\kappa_i \in \mathcal{K}}\sum^T_{t=1}l_{t,i}\mbox{。}
+    \end{equation}
+    $\sum^T_{t=1}l_{t,i}$ 表示固定选择核~$\kappa_i$，
+    在假设空间~$\mathcal{H}_i$ 中学到的模型序列得到的累积损失。
+
+\subsection{非遗忘对手}
+
+    在遗忘对手环境下给出的在线核选择包裹式方法要保存几乎所有接收到的样例，
+    且计算复杂度线性依赖于候选核的规模与相应在线核学习算法的计算复杂度。
+    在非遗忘对手的对抗式多臂赌博机模型下，
+    基于~EXP3，
+    设计在线核选择的包裹式方法~(Online Kennel Selection Wrapper via Non-Oblivious Adversary, OKSW-NOA)。
+
+    令~$\mathcal{H}=\{\mathcal{H}_1,\mathcal{H}_2,\ldots,\mathcal{H}_K\}$ 表示~$K$ 个假设空间。
+    每个候选核~$\kappa_i \in \mathcal{K}$ 对应对抗式多臂赌博机问题的一个臂~$a_i \in \mathcal{A}$。
+    经典的对抗式多臂赌博机问题，
+    学习者每回合随机选择一个核。
+    为快速探索出好的核，
+    学习者每回合可随机选择多个核。
+    具体地，
+    在第~$t$ 回合，
+    学习者以相同的概率分布~$\mathbf{P}_t$ 有放回地进行至多~$m$ 次采样。
+    记~$\kappa_{I_{ti}}$ 表示学习者第~$i$ 次采样的核，
+    $S_{t,i-1}$ 表示前~$i-1$ 次采样到核的集合。
+    若第~$i$ 次采样到的核~$\kappa_{I_{ti}} \notin S_{t,i-1}$，
+    将~$\kappa_{I_{ti}}$ 加入到集合~$S_{t,i-1}$ 中，
+    否则停止采样。
+    采样结束后，
+    令~$S_{t} = \{\kappa_{I_{t1}}, \kappa_{I_{t2}}, \ldots, \kappa_{I_{t\vert S_t\vert}}\}$
+    表示采样到的~$\vert S_t\vert$ 个核的集合。
+    以相同的概率从~$S_t$ 中随机选择一个核~$\kappa_{I_t}$。
+    学习者调用~$\mathrm{OKL}$
+    给出本回合对样例~$\{\mathbf{x}_t,y_t\}$ 的预测
+    $$
+    \hat{y}_{t,I_t}=\mathrm{OKL}\left(\{\mathbf{x}_t,y_t\},\kappa_{I_t}\right)\mbox{，}
+    $$
+    并得到损失~$l_{t,I_t} = \ell(\hat{y}_{t,I_t},y_t)$。
+    对任意~$\kappa_j \in S_t - \{\kappa_{I_t}\}$，
+    学习者调用~$\mathrm{OKL}$ 给出对样例~$\left\{\mathbf{x}_t,y_t\right\}$ 的预测~$\hat{y}_{t,j}$，
+    并得到损失~$l_{t,j} = \ell(\hat{y}_{t,j},y_t)$。
+
+    对于在线二分类问题，
+    任意的~$\kappa_j \in S_t$，
+    令损失~$l_{t,j} = \mathbb{I}\left\{\mathrm{sign}(\hat{y}_{t,j}) \neq y_t\right\}$。
+    由于每回合只能得到所选核对样例预测产生的损失，
+    故对所有候选核的损失给出一个估计量。
+    \begin{equation}
+        \label{eq:master_thesis:OKS_MAB:estimated_loss}
+        \hat{l}_{t,i}= \frac{\beta l_{t,i}}{\vert S_t \vert \cdot p_{t,i}}\mathbb{I}\left(\kappa_i \in S_t\right), \; i=1, 2, \ldots, K\mbox{。}
+    \end{equation}
+    利用对所有候选核估计的损失，
+    结合指数加权的方法更新每个核对应的权重
+    \begin{equation}
+        \label{eq:master_thesis:OKS_MAB:update_weight_loss}
+        \omega_{t+1,i} = \omega_{t,i}\cdot\exp\left( -\frac{\gamma}{K}\hat{l}_{t,i}\right)\mbox{，}
+    \end{equation}
+    用于更新第~$t+1$ 回合的概率分布~$\mathbf{P}_{t+1}$。
+
+    定义如下的在线核选择弱期望后悔，
+    度量在线核选择方法的性能
+    \begin{equation}
+        \label{eq:master_thesis:OKS_MAB:pseudo-regret_OKS}
+        \overline{R}_{OKS} = \mathbb{E}\left[\sum^T_{t=1}l_{t,I_{t}}\right] - \min_{\kappa_i \in \mathcal{K}}\mathbb{E}\left[\sum^T_{t=1}l_{t,i}\right]\mbox{。}
+    \end{equation}
+
+\section{理论分析}
+    针对遗忘对手环境下的包裹式方法，
+    由于所有的候选核均完全利用了所有的样本，
+    故而在任意回合~$t$，
+    任意的核~$\kappa_i \in \mathcal{K}$，
+    损失~$l_{t,i}$ 与学习者之前选择的核无关。
+    结合~EXP3~的分析方法~\cite{Auer2002a}，
+    给出 OKSW-OA 满足的亚线性期望后悔界。
+
+    \begin{theorem}
+        \label{thm:master_thesis:OKS_MAB:regret_bound:wrapper_oblivious}
+        对于任意的~$T >0$，
+        $B$ 为有界的常数。
+        令~$\gamma = \sqrt{\frac{K\ln(K)}{BT}}$，
+        $\varepsilon \in [0,1]$，
+        可得如下的亚线性期望后悔界
+        \begin{equation}
+            \label{eq:master_thesis:OKS_MAB:regret_bound:wrapper_oblivious}
+            \mathbb{E}\left[\sum^T_{t=1}l_{t,I_t}\right] - \min_{\kappa_i \in \mathcal{K}}\sum^T_{t=1}l_{t,i} = O\left(\sqrt{BK\ln(K)T}\right)\mbox{。}
+        \end{equation}
+    \end{theorem}
+    定理 \ref{thm:master_thesis:OKS_MAB:regret_bound:wrapper_oblivious}
+    的证明与定理~EXP3~\cite{Auer2002a}~的分析过程一致，
+    省略其证明过程。
+
+    如果~$\varepsilon > 1$，
+    OKSW-OA 执行一个更复杂的在线核选择过程。
+    当候选核性能差异很大时，
+    在某些回合，
+    对于所选择到的小概率的核，
+    其对样例的预测损失直接被一个随机变量~$z$~代替，
+    不需要调用~$\mathrm{OKL}$ 进行对样例预测。
+    可以证明，
+    该方法依然保证亚线性的期望后悔界。
+
+    \begin{theorem}
+        \label{thm:master_thesis:OKS_MAB:regret_bound:wrapper_oblivious_improved}
+        对于任意的~$T >0$，
+        令 $\gamma = \sqrt{\frac{K\ln(K)}{BT}}$，
+        $\lambda = p_z= O\left(T^{-\frac{1}{2}}\right)$，
+        $\varepsilon \in (1, \frac{1}{\gamma})$ 是一个小的常数，
+        并且~$\varepsilon \ll \sqrt{T}$\mbox{。}
+        可得如下的亚线性期望后悔界
+        \begin{equation}
+            \label{eq:master_thesis:OKS_MAB:regret_bound:wrapper_oblivious_improved}
+            \mathbb{E}\left[\sum^T_{t=1}l_{t,I_t}\right] - \min_{\kappa_i \in \mathcal{K}}\sum^T_{t=1}l_{t,i} = O\left(\varepsilon\sqrt{BK\ln(K)T}\right)\mbox{。}
+        \end{equation}
+    \end{theorem}
+    下面给出定理~\ref{thm:master_thesis:OKS_MAB:regret_bound:wrapper_oblivious_improved} 的证明过程。
+
+    \begin{proof}
+        在第~$t$ 回合，
+        令 $C_t$ 表示核的集合且满足
+        $$
+            \forall \kappa_i \in C_t, \frac{\gamma}{K} \leq p_{t,i}\leq \varepsilon \frac{\gamma}{K}\mbox{。}
+        $$
+        可以得到~$\sum_{\kappa_i \in C_t}p_{t,i} < \varepsilon \gamma$。
+
+        令~$L_{I_t}$ 表示学习者得到的累积损失，
+        则有
+        $$
+            L_{I_t} = \sum^T_{t=1}\left[l_{t,I_{t1}}\cdot\mathbb{I}(\kappa_{I_{t1}}\in \mathcal{K}-C_t) + l_{t,I_{t2}}\cdot\mathbb{I}(\kappa_{I_{t1}}\in C_t)\right]\mbox{。}
+        $$
+        上式对分布~$\mathbf{p}_1,\ldots,\mathbf{p}_T$ 求期望可得
+        \begin{align*}
+            &\mathbb{E}\left[L_{I_t}\right] \\
+            =&\sum^T_{t=1}\left[\sum_{\kappa_i \in \mathcal{K}-C_t}p_{t,i}\cdot l_{t,i} + \sum_{\kappa_i \in C_t}p_{t,i}\cdot l_{t,I_{t2}}\right]\\
+            =&\sum^T_{t=1}\left[\sum_{\kappa_i \in \mathcal{K}-C_t}p_{t,i}\cdot l_{t,i} + \sum_{\kappa_i \in C_t}p_{t,i}\cdot l_{t,i} +\sum_{\kappa_i \in C_t}p_{t,i}\cdot (l_{t,I_{t2}}- l_{t,i})\right]\\
+            =&\sum^T_{t=1}\left[\sum_{\kappa_i \in \mathcal{K}}p_{t,i}\cdot l_{t,i} +\sum_{\kappa_i \in C_t}p_{t,i}\cdot(l_{t,I_{t2}} - l_{t,i})\right]\\
+            \leq& \mathbb{E}\left[L_{I_{t1}}\right] + BT\varepsilon\gamma\mbox{。}
+        \end{align*}
+        其中，
+        $$
+            L_{I_{t1}} =\sum^T_{t=1}l_{t,I_{t1}}\mbox{。}
+        $$
+        令
+        $$
+            G_{I_{t1}} = \sum^T_{t=1}g_{t,I_{t1}}\mbox{，}
+        $$
+        对于任意的~$\kappa_j \in \mathcal{K}$，
+        有
+        \begin{equation}
+            \label{eq:master_thesis:OKS_MAB:proof_regret_bound:wrapper_oblivious_improved:eq01}
+            \begin{aligned}
+                &\mathbb{E}\left[ L_{I_t} \right] - L_{j} \\
+                \leq& \mathbb{E}\left[ L_{I_{t1}} \right] - L_{j} + BT\varepsilon\gamma\\
+                =& G_{j} - \mathbb{E}\left[ G_{I_{t1}} \right] + BT\varepsilon\gamma\mbox{。}
+            \end{aligned}
+        \end{equation}
+        其中
+        $$
+            L_{j} = \sum^T_{t=1}l_{t,j}\mbox{，}
+        $$
+        且
+        $$
+            G_{j} = \sum^T_{t=1}g_{t,j}\mbox{。}
+        $$
+        接下来分析期望的累积损失~$\mathbb{E}\left[G_{I_{t1}}\right]$。
+
+        根据~EXP3~证明过程中的式 (10) \cite{Auer2002a}，
+        可得
+        $$
+            G_{I_{t1}} \geq (1-\gamma)\widehat{G}_{j} - \frac{K\ln(K)}{\gamma} - \frac{\gamma}{K}\sum_{\kappa_i \in \mathcal{K}}\widehat{G}_{i},~~\forall \kappa_j \in \mathcal{K}
+        $$
+        其中
+        $$
+            \widehat{G}_j = \sum_{t \in [T]}\hat{g}_{t,j}\mbox{。}
+        $$
+        上式对~$\{\kappa_{I_{11}}, \kappa_{I_{21}}, \ldots, \kappa_{I_{t1}}\}$ 求期望可得
+        $$
+            \mathbb{E}\left[\hat{g}_{t,j}\vert \kappa_{I_1},\ldots,\kappa_{I_{t-1}}\right]=\mathbb{E}\left[(1-p_{t,j})\cdot 0 + p_{t,j}\cdot \frac{g_{t,j}}{p_{t,j}}\right]\mbox{。}
+        $$
+        如果~$\kappa_j \notin C_t$，
+        则有~$\mathbb{E}\left[g_{t,j}\right] = g_{t,j}$，
+        否则，
+        $\mathbb{E}\left[g_{t,j}\right] = B-z$。
+        令~$\delta_{t,j}$ 表示~$\kappa_j \notin C_t$ 的概率。
+        对随机变量~$z$ 求期望可得
+        $$
+            \mathbb{E}\left[g_{t,j}\right] = \delta_{t,j}\cdot g_{t,j}  + (1-\delta_{t,j})\cdot (B-\mathbb{E}[z])\mbox{。}
+        $$
+        令
+        $$
+            \overline{G}_j=\sum_{t\in[T]}\mathbb{E}\left[g_{t,j}\right]\mbox{。}
+        $$
+        我们可以得到
+        $$
+            \mathbb{E}\left[ G_{I_{t1}} \right] \geq (1-\gamma)\overline{G}_j - \frac{K\ln(K)}{\gamma} - \frac{\gamma}{K}\sum_{\kappa_i \in \mathcal{K}}\overline{G}_i\mbox{，}
+        $$
+        上述证明不同于~EXP3~\cite{Auer2002a} 的证明。
+        令
+        $$
+            \gamma = \sqrt{\frac{K\ln(K)}{BT}}
+        $$
+        得到
+        \begin{equation}
+            \label{eq:master_thesis:OKS_MAB:proof_regret_bound:wrapper_oblivious_improved:eq02}
+            \overline{G}_j - \mathbb{E}\left[G_{I_{t1}}\right]\leq 2\sqrt{BK\ln(K)T}\mbox{。}
+        \end{equation}
+        对于任意的核~$\kappa_j \in \mathcal{K}$，
+        下面界定累积的期望奖励~$\overline{G}_j$ 与累积奖励~$G_j$ 之间的差，
+        是得到定理~\ref{thm:master_thesis:OKS_MAB:regret_bound:wrapper_oblivious_improved} 的关键步骤。
+        \begin{align*}
+                \overline{G}_j - G_j =&\sum^T_{t=1}\left(\delta_{t,j}\cdot g_{t,j}  + (1-\delta_{t,j})\cdot \left(B-\mathbb{E}[z]\right)\right) - \sum^T_{t=1}g_{t,j}\\
+                =&\sum^T_{t=1}(1-\delta_{t,j})\cdot ((B-\lambda)(1-p_z) - g_{t,j})\\
+                \geq& -Bp_z\cdot T-\lambda(1-p_z)\cdot T\mbox{。}
+        \end{align*}
+        然后，
+        令~$\lambda = p_z = O(T^{-\frac{1}{2}})$，
+        可得
+        \begin{equation}
+            \label{eq:master_thesis:OKS_MAB:proof_regret_bound:wrapper_oblivious_improved:eq03}
+            G_j - \overline{G}_j \leq c\sqrt{T}\mbox{。}
+        \end{equation}
+        结合公式~
+        \eqref{eq:master_thesis:OKS_MAB:proof_regret_bound:wrapper_oblivious_improved:eq01}，
+        \eqref{eq:master_thesis:OKS_MAB:proof_regret_bound:wrapper_oblivious_improved:eq02}，
+        以及 \eqref{eq:master_thesis:OKS_MAB:proof_regret_bound:wrapper_oblivious_improved:eq03}，
+        可以得到
+        \begin{align*}
+            \mathbb{E}\left[ L_{I_t} \right] - L_j &\leq G_j - \mathbb{E}\left[ G_{I_{t1}} \right] + T\varepsilon\gamma\\
+            &= G_j - \overline{G}_j + \overline{G}_j -\mathbb{E}\left[ G_{I_{t1}} \right] + \varepsilon \gamma T\\
+            &\leq p_{\mathrm{Ber}}\cdot T + (2 + \varepsilon)\sqrt{BK\ln(K)T}\\
+            &\leq c\sqrt{T}+(2 + \varepsilon)\sqrt{BK\ln(K)T}\mbox{，}
+        \end{align*}
+        其中~$c$ 是一个常数。\\
+        证毕。
+    \end{proof}
+
+    下面给出在非遗忘对手环境下的对抗赌博机模型，
+    OKSW-NOA 的理论结果。
+    \begin{theorem}
+        \label{thm:master_thesis:OKS_MAB:regret_bound:wrapper_non-oblivious}
+        对任意~$\kappa_j \in \mathcal{K},\; l_{t,j} \in [0,B], \; j=1, 2, \ldots, K$，
+        令
+        \begin{align*}
+        \beta  &=  m \in \{1, 2, \ldots, K\}\mbox{，}\\
+        \gamma &= \sqrt{\frac{2K\ln(K)}{m(2+mB)BT}}\mbox{，}
+        \end{align*}
+        则~OKSW-NOA~可保证如下在线核选择的弱期望后悔界
+        $$
+                  \sum^T_{t=1}\mathbb{E}\left[l_{t,I_t}\right] -\sum^T_{t=1}\mathbb{E}\left[l_{t,j}\right]
+             \leq \sqrt{\frac{2(2+mB)BK\ln(K)T}{m}}\mbox{。}
+        $$
+    \end{theorem}
+    在非遗忘对手环境下，
+    $l_{t,j}$ 与学习者前~$t-1$ 回合的选择相关。
+    当~$m=1$ 时，
+    OKSW-NOA~退化为经典的多臂赌博机问题，
+    每回合选择一个臂。
+    Dekel 等~\cite{Dekel2012} 指出，
+    若对手在第~$t$ 回合给出的损失与学习者前~$t-1$ 回合的选择相关，
+    则无法保证亚线性的期望后悔界。
+    定理~\ref{thm:master_thesis:OKS_MAB:regret_bound:wrapper_non-oblivious}
+    给出的是弱期望后悔，
+    比较的是期望意义下表现最好的核。
+
+    下面给出定理~\ref{thm:master_thesis:OKS_MAB:regret_bound:wrapper_non-oblivious}
+    的证明过程。
+
+    \begin{proof}
+        任意回合~$t$，
+        结合~EXP3~的分析过程~\cite{Auer2002a}，
+        给出定理~\ref{thm:master_thesis:OKS_MAB:regret_bound:wrapper_non-oblivious} 的证明。
+        首先给出下面两个式子
+        \begin{align*}
+          \sum^K_{i=1}p_{t,i}\hat{l}_{t,i} &= \sum_{\kappa_i \in S_t}\frac{\beta l_{t,i}}{\vert S_t\vert},\\
+          \sum^K_{i=1}p_{t,i}\hat{l}^2_{t,i} &\leq \beta B\sum^K_{i=1}\hat{l}_{t,i}\mbox{。}
+        \end{align*}
+        令~$\mathbf{W}_t = \sum^{K}_{j=1}w_{t,j}$，
+        可得
+        \begin{align*}
+            &\frac{\mathbf{W}_{t+1}}{\mathbf{W}_t}\\
+            =&\frac{\sum^K_{i=1}w_{t,i}\exp(-\frac{\gamma}{K}\hat{l}_{t,i})}{\mathbf{W}_t}\\
+            =&\sum^K_{i=1}\frac{p_{t,i}-\frac{\gamma}{K}}{1-\gamma}\exp(-\frac{\gamma}{K}\hat{l}_{t,i})\\
+            \leq&\sum^K_{i=1}\frac{p_{t,i}-\frac{\gamma}{K}}{1-\gamma}\left(1 - \frac{\gamma}{K}\hat{l}_{t,i} + \frac{\gamma^2\hat{l}^2_{t,i}}{2K^2}\right)\\
+            \leq&  1 - \frac{\gamma}{(1-\gamma)K}\sum_{\kappa_i \in S_t}l_{t,i}+\frac{(2+\beta B)\gamma^2}{2K^2(1-\gamma)}\sum^K_{i=1}\hat{l}_{t,i}\mbox{。}
+        \end{align*}
+        以上不等式由~$x > 0 $ 时~$\exp(-x) \leq 1-x+\frac{1}{2}x^2$~得到。\\
+        又由于当~$x\in \mathbb{R}$，
+        有~$1+x \leq \exp(x)$ 成立，
+        $$
+            \ln\frac{\mathbf{W}_{t+1}}{\mathbf{W}_t}
+            \leq \frac{-\gamma\beta}{(1-\gamma)K}\sum_{\kappa_i \in S_t}\frac{l_{t,i}}{\vert S_t\vert}+\frac{(2+B)\gamma^2}{2K^2(1-\gamma)}\sum^K_{i=1}\hat{l}_{t,i}\mbox{。}
+        $$
+        上述不等式两边均对~$t$ 求和，再取对数
+        $$
+            \ln \frac{\mathbf{W}_{T+1}}{\mathbf{W}_1}
+            \leq \frac{-\gamma}{(1-\gamma)K}\sum^T_{t=1}\left[\sum_{\kappa_i \in S_t}\frac{\beta l_{t,i}}{\vert S_t\vert}-\frac{(2+B)\gamma}{2K}\sum^K_{i=1}\hat{l}_{t,i}\right]\mbox{。}
+        $$
+        另一方面，
+        对于任意的~$\kappa_j \in \mathcal{K}$ 都有
+        $$
+            \ln \frac{\mathbf{W}_{T+1}}{\mathbf{W}_1} \geq -\frac{\gamma}{K}\sum^T_{t=1}\hat{l}_{t,j} - \ln{K}\mbox{。}
+        $$
+        由以上两个不等式可得
+        \begin{equation}
+            \label{eq:CCDM2018:OKS-AB:appendix_eq01}
+                \sum^T_{t=1}\sum_{\kappa_i \in S_t}\frac{l_{t,i}}{\vert S_t\vert}
+                \leq (1-\gamma)\sum^T_{t=1}\frac{\hat{l}_{t,j}}{\beta}+ \frac{K\ln(K)}{\beta\gamma} +
+                \frac{(2+\beta B)\gamma}{2K\beta}\sum^T_{t=1}\sum^K_{i=1}\hat{l}_{t,i}\mbox{。}
+        \end{equation}
+        令~$S_t = \{\kappa_{i_1}, \kappa_{i_2}, \ldots, \kappa_{i_{\vert S_t\vert}}\}$，\\
+        满足
+        $$
+        i_1 \neq i_{2}\neq \ldots \neq i_{\vert S_t\vert}\mbox{。}
+        $$
+        若~$\vert S_t\vert < m$，
+        可得~$p(\forall \kappa_j \in S_t) = p_{t,j}\delta_{t,j}$。\\
+        其中，
+        $$
+            \delta_{t,j} = \vert S_t\vert\sum_{i_2 \neq j}\ldots \sum_{i_{\vert S_t\vert}\neq j} \prod_{i\in S_t, i\neq j}p_{t,i}\sum_{r\in S_t}p_{t,r}\mbox{。}
+        $$
+        若~$\vert S_t\vert = m$，
+        可得~$p(\forall \kappa_j \in S_t) = p_{t,j}\delta_{t,j}$。\\
+        其中，
+        $$
+            \delta_{t,j} = \vert S_t\vert\sum_{i_2 \neq j}\ldots \sum_{i_{\vert S_t\vert}\neq j} \prod_{i\in S_t, i\neq j}p_{t,i}\mbox{。}
+        $$
+        可以证明两种情况下均有~$\delta_{t,j} \leq \vert S_t\vert$。\\
+        给定~$S_1, S_2, \ldots,S_{t-1}$，
+        \eqref{eq:CCDM2018:OKS-AB:appendix_eq01} 式两边分别对~$S_{t}$ 求期望，
+        可得
+        $$
+          \mathbb{E}\left[l_{t,I_t}\right] = \frac{1}{\vert S_t\vert}\sum_{\kappa_i \in S_t}\mathbb{E}\left[l_{t,i}\right]\mbox{，}
+        $$
+        以及
+        $$
+            \mathbb{E}\left[\hat{l}_{t,j} \vert \mathcal{K}_1,\mathcal{K}_2,\ldots,\mathcal{K}_{t-1}\right] \leq \beta\mathbb{E}\left[l_{t,j}\right]\mbox{。}
+        $$
+        结合上述不等式，可得
+        $$
+            \sum^T_{t=1}\mathbb{E}\left[l_{t,I_t}\right]
+            \leq (1-\gamma)\sum^T_{t=1}\mathbb{E}\left[l_{t,j}\right] + \frac{K\ln(K)}{\beta\gamma}+ \frac{(2+\beta B)\gamma BT}{2}\mbox{。}
+        $$
+        令
+        $$
+        \gamma = \sqrt{\dfrac{2K\ln(K)}{\beta(2+\beta B)BT}}\mbox{，}
+        $$
+        可得
+        $$
+            \sum^T_{t=1}\mathbb{E}\left[l_{t,I_t}\right] -\sum^T_{t=1}\mathbb{E}\left[l_{t,j}\right]
+            \leq\sqrt{\frac{2(2+\beta B)BK\ln(K)T}{\beta}}\mbox{。}
+        $$
+        证毕。
+    \end{proof}
+
+\newpage
+\section{包裹式在线核选择算法}
+
+    针对在线二分类问题，
+    将遗忘对手环境下的包裹式在线核选择总结为
+    算法 \ref{alg:master_thesis:OKS_MAB:alg:wrapper_oblivious_adversary}
+
+    \begin{algorithm}[!htp]
+    \caption{ \small{Online Kennel Selection Wrapper via Oblivious Adversary, OKSW-OA}}
+    \SetKwInOut{KwIn}{输入}
+    \SetKwInOut{KwOut}{初始化}
+    \LinesNumbered  %显示行号
+    \label{alg:master_thesis:OKS_MAB:alg:wrapper_oblivious_adversary}
+    \small
+    \KwIn {$\gamma, \varepsilon, \lambda, p_{z}, \mathcal{K}$}
+    \KwOut{$\omega_1 = r = \mathbf{1}_K$ and $S = \emptyset$}
+    \For{$t = 1 : T$}
+    {
+        设置 $p_{t,i} = (1-\gamma)\frac{\omega_{t,i}}{\sum^K_{j=1}\omega_{t,j}} +\frac{\gamma}{K}$\;
+        接收样例~$\{\mathbf{x}_t,y_t\}$~且~$S = S \cup \{\mathbf{x}_t,y_t\}$\;
+        根据概率分布~$\mathbf{P}_t$ 采样一个核~$\kappa_{I_{t1}}$\;
+        \eIf {$p_{t,I_{t1}} > \varepsilon \frac{\gamma}{K}$}
+        {
+            调用~$\mathrm{OKL}$ 得到预测值~$\hat{y}_{t,I_{t1}} = \mathrm{OKL}(\{\mathbf{x}_i,y_i\}_{i \in [r_{I_{t1}}:t]},\mathcal{H}_{I_{t1}})$~\;
+            得到损失~$l_{t,I_{t1}} =\mathbb{I}(\mathrm{sign}\left(\hat{y}_{t,I_{t1}}\right) \neq y_t)$\;
+            设置奖励~$g_{t,I_{t1}} = 1 - l_{t,I_{t1}}$\;
+            设置估计的奖励~$\hat{g}_{t,i} =\frac{g_{t,i}}{p_{t,i}}\mathbb{I}(\kappa_i=\kappa_{I_{t1}}), \forall \kappa_i \in \mathcal{K}$\;
+            更新权重~$\omega_{t+1,i} = \omega_{t,i}\exp\left( \frac{\gamma}{K}\hat{g}_{t,i}\right)$\;
+            更新索引~$r_{I_{t1}} = t+1$\;
+        }{
+            选择具有最大概率的核~$\kappa_{I_{t2}}$\;
+            调用~$\mathrm{OKL}$ 得到预测值~$\hat{y}_{t,I_{t2}} = \mathrm{OKL}(\{\mathbf{x}_t,y_t\},\mathcal{H}_{I_{t2}})$~\;
+            得到损失~$l_{t,I_{t2}} = \mathbb{I}(\mathrm{sign}\left(\hat{y}_{t,I_{t2}}\right) \neq y_t)$\;
+            设置损失~$l_{t,I_{t1}} = z = \mathbf{Bin}(\lambda,1,p_{z})$\;
+            设置奖励~$g_{t,I_{t1}} = 1 - l_{t,I_{t1}}$\;
+            设置估计的奖励~$\hat{g}_{t,i} =\frac{g_{t,i}}{p_{t,i}}\mathbb{I}(\kappa_i=\kappa_{I_{t1}}), \forall \kappa_i \in \mathcal{K}$\;
+            更新权重~$\omega_{t+1,i} = \omega_{t,i}\exp\left( \eta\hat{g}_{t,i}\right)$\;
+            更新索引~$r_{I_{t1}} = t+1$\;
+        }
+        更新索引~$r_m = \min_{\kappa_i \in \mathcal{K}}r_i$ 以及~$S = \{\mathbf{x}_i,y_i\}^{t}_{i=r_m}$\;
+    }
+    \end{algorithm}
+
+    当~$\varepsilon \in [0,1]$~时，
+    将算法~\ref{alg:master_thesis:OKS_MAB:alg:wrapper_oblivious_adversary} 记为~OKSW-OA，
+    当~$\varepsilon > 1$ 时，
+    将算法~\ref{alg:master_thesis:OKS_MAB:alg:wrapper_oblivious_adversary} 记为~IOKSW-OA。
+    由定理~\ref{thm:master_thesis:OKS_MAB:regret_bound:wrapper_oblivious}
+    以及定理~\ref{thm:master_thesis:OKS_MAB:regret_bound:wrapper_oblivious_improved} 可知，
+    OKSW-OA 相比于~IOKSW-OA 有更紧的后悔界。
+    OKSW-OA 以及~IOKSW-OA 的时间复杂度依赖于在线核学习算法~$\mathrm{OKS}$ 的时间复杂度
+    以及候选核的规模。
+    实验表明，
+    当候选核性能差异较大时，
+    提出的~IOKSW-OA 相比于~OKSW-OA 计算效率更高。
+
+    针对在线二分类，
+    将非遗忘对手环境下的包裹式在线核选择总结为
+    算法~\ref{alg:master_thesis:OKS_MAB:alg:wrapper_non-oblivious_adversary}。
+
+    \begin{algorithm}[!htp]
+        \caption{\small{Online Kennel Selection Wrapper via Non-Oblivious Adversary, OKSW-NOA}}
+        \SetKwInOut{KwIn}{输入}
+        \SetKwInOut{KwOut}{初始化}
+        \LinesNumbered  %显示行号
+        \label{alg:master_thesis:OKS_MAB:alg:wrapper_non-oblivious_adversary}
+        \small
+        \KwIn{$K$ 个候选核, $\gamma$, $\eta$, $\beta$}%输入参数
+        \KwOut{$\omega_1 = \mathbf{1}_K, S_1 = \emptyset$}%输出
+        \For{$t = 1 : T$}
+        {
+            $\forall \kappa_i \in \mathcal{K},~p_{t,i} = (1-\gamma)\frac{\omega_{t,i}}{\sum^K_{j=1}\omega_{t,j}} + \gamma \cdot \frac{1}{K} $\;
+            接收样例~$\{\mathbf{x}_t,y_t\}$\;
+            根据概率分布~$\mathbf{P}_t$ 采样一个核~$\kappa$\;
+            \While {$\kappa \notin S_t$ 且~$\vert S_t\vert < m$}
+            {
+                $S_t = S_t \cup \kappa$\;
+                根据概率分布~$\mathbf{P}_t$ 采样一个核~$\kappa$\;
+            }
+            以相同的概率从~$S_t$ 中选择一个核~$\kappa_{I_t}$\;
+            预测~$\hat{y}_{t,I_t} = \mathrm{OKL}(\{\mathbf{x}_t,y_t\},\kappa_{I_t})$\;
+            $l_{t,I_t} = \mathbb{I}(\mathrm{sign}(\hat{y}_{t,I_t}) \neq y_t)$\;
+            \For{$\kappa_i \in S_t-\{\kappa_{I_t}\}$}
+            {
+                预测~$\hat{y}_{t,i} = \mathrm{OKL}(\{\mathbf{x}_t,y_t\},\kappa_i)$\;
+                $l_{t,i} = \mathbb{I}(\mathrm{sign}(\hat{y}_{t,i}) \neq y_t)$\;
+            }
+            估计损失~
+            $\hat{l}_{t,i}= \frac{\beta l_{t,i}}{\vert S_t \vert p_{t,i}}\mathbb{I}(\kappa_i \in S_t),~\forall \kappa_i \in \mathcal{K}$\;
+            更新权重~
+            $\omega_{t+1,i} = \omega_{t,i}\cdot\exp\left( -\frac{\gamma}{K}\hat{l}_{t,i}\right)$\;
+            $S_t = \emptyset$\;
+        }
+    \end{algorithm}
+
+\section{小结}
+    本章分别应用遗忘对手环境下的对抗式多臂赌博机模型以及
+    非遗忘对抗式多臂赌博机模型下给出了在线核选择的包裹式方法。
+    在遗忘对手环境下，
+    保证~$O\left(T^{\frac{1}{2}}\right)$~的期望后悔界；
+    在非遗忘对手环境下，
+    保证~$O\left(T^{\frac{2}{3}}\right)$~的弱期望后悔界，
+    相比于期望后悔界更弱。
+    相比于遗忘对手环境，
+    非遗忘对手环境下的包裹式方法空间复杂度更小以及时间复杂度更低。
+
+
+

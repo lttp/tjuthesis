@@ -1,0 +1,54 @@
+\ttl@change@i {\@ne }{chapter}{0em}{\vspace {0pt}\xiaosi \song \bfseries }{\prechaptername \thecontentslabel \postchaptername \quad }{}{\hspace {.5em}\titlerule *[7pt]{.}\xiaosi \contentspage }\relax 
+\ttl@change@v {chapter}{}{}{}\relax 
+\ttl@change@i {\@ne }{section}{2em}{\vspace {0pt}\xiaosi \song }{\thecontentslabel \quad }{}{\hspace {.5em}\titlerule *[7pt]{.}\xiaosi \contentspage }\relax 
+\ttl@change@v {section}{}{}{}\relax 
+\ttl@change@i {\@ne }{subsection}{4em}{\vspace {0pt}\xiaosi \song }{\thecontentslabel \quad }{}{\hspace {.5em}\titlerule *[7pt]{.}\xiaosi \contentspage }\relax 
+\ttl@change@v {subsection}{}{}{}\relax 
+\contentsline {chapter}{摘\hskip 2em\relax 要}{I}{section*.2}% 
+\contentsline {chapter}{ABSTRACT}{III}{section*.4}% 
+\contentsline {chapter}{\numberline {1}绪论}{1}{section*.7}% 
+\contentsline {section}{\numberline {1.1}研究背景及意义}{1}{section*.8}% 
+\contentsline {section}{\numberline {1.2}研究现状}{2}{section*.9}% 
+\contentsline {subsection}{\numberline {1.2.1}复杂网络社团检测现状}{2}{section*.10}% 
+\contentsline {subsection}{\numberline {1.2.2}城市风险计算现状}{4}{section*.12}% 
+\contentsline {subsection}{\numberline {1.2.3}主要创新点}{4}{section*.13}% 
+\contentsline {section}{\numberline {1.3}章节安排}{5}{section*.14}% 
+\contentsline {chapter}{\numberline {2}相关研究}{7}{section*.15}% 
+\contentsline {section}{\numberline {2.1}动态网络社团检测}{7}{section*.16}% 
+\contentsline {subsection}{\numberline {2.1.1}增量聚类方法}{9}{section*.19}% 
+\contentsline {subsection}{\numberline {2.1.2}进化聚类方法}{9}{section*.20}% 
+\contentsline {subsection}{\numberline {2.1.3}生成模型方法}{10}{section*.21}% 
+\contentsline {section}{\numberline {2.2}动态网络社团演化}{11}{section*.22}% 
+\contentsline {subsection}{\numberline {2.2.1}独立社团演化}{11}{section*.24}% 
+\contentsline {subsection}{\numberline {2.2.2}非独立社团演化}{12}{section*.25}% 
+\contentsline {subsection}{\numberline {2.2.3}同步社团演化}{13}{section*.26}% 
+\contentsline {section}{\numberline {2.3}城市风险计算}{13}{section*.27}% 
+\contentsline {section}{\numberline {2.4}本章小结}{15}{section*.29}% 
+\contentsline {chapter}{\numberline {3}节点结构属性对社团演化影响因素的探究}{17}{section*.30}% 
+\contentsline {section}{\numberline {3.1}探究方法}{17}{section*.31}% 
+\contentsline {section}{\numberline {3.2}数据集}{19}{section*.35}% 
+\contentsline {section}{\numberline {3.3}实验及验证}{21}{section*.38}% 
+\contentsline {subsection}{\numberline {3.3.1}实验及结论}{21}{section*.39}% 
+\contentsline {subsection}{\numberline {3.3.2}验证}{23}{section*.43}% 
+\contentsline {section}{\numberline {3.4}本章小结}{26}{section*.49}% 
+\contentsline {chapter}{\numberline {4}融合节点级别社团转移参数的动态网络社团检测生成模型}{27}{section*.50}% 
+\contentsline {section}{\numberline {4.1}HB-DSBM模型构建}{27}{section*.51}% 
+\contentsline {subsection}{\numberline {4.1.1}符号表示}{27}{section*.52}% 
+\contentsline {subsection}{\numberline {4.1.2}HB-DSBM模型}{28}{section*.54}% 
+\contentsline {section}{\numberline {4.2}模型求解}{29}{section*.56}% 
+\contentsline {subsection}{\numberline {4.2.1}变分推断}{29}{section*.57}% 
+\contentsline {subsection}{\numberline {4.2.2}迭代算法}{33}{section*.58}% 
+\contentsline {section}{\numberline {4.3}实验及验证}{33}{section*.60}% 
+\contentsline {subsection}{\numberline {4.3.1}数据集}{33}{section*.61}% 
+\contentsline {subsection}{\numberline {4.3.2}动态社团检测}{34}{section*.62}% 
+\contentsline {subsubsection}{\numberline {4.3.2.1}评价指标}{34}{section*.63}% 
+\contentsline {subsubsection}{\numberline {4.3.2.2}实验结果}{35}{section*.64}% 
+\contentsline {subsection}{\numberline {4.3.3}社团演化分析}{37}{section*.79}% 
+\contentsline {section}{\numberline {4.4}本章小结}{38}{section*.83}% 
+\contentsline {chapter}{\numberline {5}总结与展望}{41}{section*.84}% 
+\contentsline {section}{\numberline {5.1}总结}{41}{section*.85}% 
+\contentsline {section}{\numberline {5.2}展望}{42}{section*.86}% 
+\contentsline {chapter}{参考文献}{45}{section*.88}% 
+\contentsline {chapter}{发表论文和参加科研情况说明}{51}{section*.90}% 
+\contentsline {chapter}{致\hskip 1em\relax 谢}{53}{section*.92}% 
+\contentsfinish 

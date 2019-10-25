@@ -1,0 +1,158 @@
+% !Mode:: "TeX:UTF-8"
+
+\chapter{文献综述}
+    本章首先介绍在线核选择，
+    然后综述在线核选择的已有工作，
+    分析存在的问题；
+    最后简要介绍多臂赌博机问题的相关工作。
+    
+\section{在线核选择}
+    在线核选择是在线核方法的重要内容。
+    近年来，
+    在线核选择的研究引起了广泛地关注。
+    模型选择方法大体上可分为过滤式、包裹式和嵌入式三种类型~\cite{Guyon2010}。
+    已有在线核选择工作经验地采用过滤式方法，
+    也零散地提出了个别嵌入式方法和包裹式方法。
+
+    迄今为止,
+    尚没一个统一框架可用来比较、分析并研究各种在线核选择问题.
+    针对这一问题,
+    拟应用对抗式多臂赌博机模型,
+    构建在线核选择的一个统一框架.
+    模型选择问题大体上可以分为过滤式、包裹式以及嵌入式三种类型。
+
+\subsection{过滤式方法}
+    按照~Guyon 等 \cite{Guyon2010} 对离线模型选择的过滤式方法的定义。
+    对于在线核选择，
+    Dekel 等~\cite{Dekel2005} 以及~Hoi 等~\cite{Hoi2012} 经验地预设核，
+    采用的是一种过滤式方法。
+    该类方法没有理论上的保证，
+    也没有规范的形式。
+\subsection{包裹式方法}
+    包裹式在线核选择，
+    适用于任意的在线核学习模型。
+    Foster 等~\cite{Foster2017} 应用专家建议模型提出一种在线模型选择的包裹式方法。
+    给定候选模型类，
+    每个模型类对应一个专家，
+    每回合根据一个概率分布选择一个模型类，
+    利用所选模型类中学习得到的假设序列对样例进行预测，
+    然后得到预测的损失。
+    专家建议模型，
+    每回合要得到所有专家的损失。
+    因而，
+    该方法每回合要在所有候选模型类中预测样例并得到损失，
+    虽然理论上该方法理论上保证了~$O\left(T^{\frac{1}{2}}\right)$ 的后悔界，
+    但时间复杂度线性依赖于候选模型集合的规模。
+
+\subsection{嵌入式方法}
+    Fan 等~\cite{Fan2016}~和~Chen 等~\cite{Chen2016} 提出自适应的在线核选择。
+    在原始的再生核希尔伯特空间中，
+    应用梯度下降方法最小化每回合的瞬时损失学习核参数。
+    以高斯核为例，
+    理论上分析了梯度下降方法的收敛到最优核参数的条件。
+    在原再生核希尔伯特空间中学习核参数，
+    每回合要维护一个~$O(t^2)$ 的核矩阵，
+    因而该方法具有很高的时间复杂度。
+    Nguyen 等~\cite{TuDinhNguyen2017} 和~Han 等~\cite{Han2017} 针对高斯核，
+    利用随机特征映射近似核，
+    将核参数从随机特征映射中分离出来，
+    也应用梯度下降方法最小化每回合的瞬时损失学习核参数。
+    在近似的随机特征空间中学习线性假设序列，
+    每回合的时间复杂为~$O(Dd)$。
+    Han 等理论山保证了~$O\left(T^{\frac{1}{2}}\right)$ 的后悔界。
+    %Yang 等 \cite{Yang2015} 将在线核学习表示为一个高斯过程，
+%    应用梯度下降法来最大化似然学习核参数。
+    Yang 等~\cite{Yang2012} 为了解决离线核选择计算复杂度高的问题，
+    提出了一种在线核选择算法~(Online Kernel Selection, OKS)。
+    OKS 同样适用于在线核选择。
+    给定候选核集合，
+    每回合根据一个概率分布随机选择一个核。
+    这种在同一个优化框架下应用梯度下降方法来学习模型并选择核参数的方法属于嵌入式方法.
+    嵌入式方法不适用于任意在线核学习模型。
+
+\section{多臂赌博机问题}
+    多臂赌博机问题是序列决策的经经典例子，
+    主要可以分为随机多臂赌博机以及对抗式多臂赌博机两种类型。
+\subsection{随机多臂赌博机问题}
+    多臂赌博机问题最早由  Robbins \cite{Robbins1985} 提出。
+    记~$\mathcal{A} = \{a_1,a_2,\ldots,a_K\}$ 为~$K$ 个臂的集合。
+    一个玩家采用某种策略~$\mathcal{P}$ 每回合从~$K$ 个臂中选择一个臂~$a_{I_t}$，
+    然后得到一个奖励~$g_{t,I_t}$，
+    该奖励是由某个未知的概率分布~$v_{I_t}$ 独立同分布产生。
+    对于任意的臂~$a_i$，
+    对应奖励的概率分布为~$v_i$，
+    期望为~$\mu_i$。
+    玩家的目的是最大化累积的奖励。
+    这样的多臂赌博机问题被称为随机多臂赌博机问题。
+    定义如下的后悔度量策略~$\mathcal{P}$~的性能 \cite{Bubeck2012}
+    \begin{equation}
+        \label{eq:master_thesis:OKS_MAB:regret_MAB}
+        \mathcal{R} = \max_{i \in [K]}\sum^T_{t=1}g_{t,i} - \sum^T_{t=1}g_{t,I_t}\mbox{。}
+    \end{equation}
+    通常对多臂赌博机问题分析，
+    定义更简单的准后悔
+    \begin{equation}
+        \label{eq:master_thesis:OKS_MAB:pseudo_regret_MAB}
+        \overline{R} = \max_{i \in [K]}\sum^T_{t=1}\mathbb{E}\left[g_{t,i}\right]- \sum^T_{t=1}\mathbb{E}\left[g_{t,I_t}\right]\mbox{。}
+    \end{equation}
+    准后悔不同于期望后悔
+    \begin{equation}
+        \label{eq:master_thesis:OKS_MAB:expected_regret_MAB}
+        \mathbb{E}\left[\mathcal{R}\right] = \mathbb{E}\left[\max_{i \in [K]}\sum^T_{t=1}g_{t,i} - \sum^T_{t=1}g_{t,I_t}\right]\mbox{。}
+    \end{equation}
+    一般地，
+    准后悔和期望后悔满足~$\overline{R} \leq \mathbb{E}\left[\mathcal{R}\right]$。
+%    Lai 和 Robbins \cite{Robbins1985} 指出，
+%    对于某些特定的概率分布族，
+    Lai 和 Robbins \cite{Robbins1952} 指出，
+    对于任意的策略，
+    准后悔的下界满足~$O(\ln(T))$。
+    现有的~``UCB''~(Upper Confidence Bound) \cite{Auer2002,Bubeck2012}
+    对于随机多臂赌博机问题，
+    能够实现最优的对数上界。
+    另一个简单的启发式策略是~$\varepsilon$-greedy \cite{Sutton1998}。
+    Auer \cite{Auer2002} 证明了当~$\varepsilon$~是关于回合数~$t$ 的一个确定函数时，
+    $\varepsilon$-greedy 策略可以保证最优的对数后悔界。
+
+\subsection{对抗式多臂赌博机问题}
+    对抗式多臂赌博机由~Auer \cite{Auer2002} 提出。
+    不同于随机多臂赌博机问题，
+    每回合玩家得到的奖励~$g_{t,I_t}$ 不一定服从某个固定的概率分布，
+    是由一个对手给出。
+    具体地，
+    若奖励~$g_{t,I_t}$ 与玩家之前选择的臂无关，
+    则称为遗忘对手，
+    反之，称为非遗忘对手。
+    一般地，策略~$\mathcal{P}$~是一个随机化的策略，
+    即玩家为了最大化累积的奖励，
+    需要随机化选择臂。
+    现有的~``EXP3'' 策略针对遗忘对手环境下的对抗式赌博机问题能够保证最优的~$O\left(\sqrt{K\ln(K)T}\right)$
+    的期望后悔界 \cite{Auer2002a}。
+    针对非遗忘对手环境下的对抗式赌博机问题，
+    ``EXP3'' 策略能够保证高概率的后悔界 \cite{Bubeck2012}
+    $$
+        \mathcal{R} = O\left(\sqrt{T\ln\left(\delta^{-1}\right)}\right)\mbox{。}
+    $$
+    已有的策略分别针对随机多臂赌博机和对抗式多臂赌博机能够保证最优的后悔界。
+    Auer 等 \cite{Auer2016} 针对随机多臂赌博机和对抗式多臂赌博机
+    提出一个能够同时保证接近最优的准后界。
+    具体地，
+    对于对抗式赌博机问题保证接近最优的准后悔界
+    $$
+        \overline{R} = O\left(K\sqrt{T\ln(T)}\right)\mbox{。}
+    $$
+    对于随机多臂赌博机问题保证
+    $$
+        \overline{R} = O\left( \sum_i \frac{\ln(T)}{\Delta_i} \right)\mbox{。}
+    $$
+    
+    已有工作应随机多臂赌博机模型，
+    解决解决离线模型选择存在的问题。
+    Agarwal 等 \cite{Agarwal2011} 应用随机多臂赌博机的 UCB 策略，
+    解决计算资源有限情况下的模型选择问题；
+    Jamieson 等 \cite{Jamieson2016} 应有随机多臂赌博机的纯探索策略，
+    提出一种对抗式赌博机模型纯探索策略，
+    用于加快模型选择中超参数的最优化问题。
+    
+\section{小结}
+
